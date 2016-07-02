@@ -1,5 +1,4 @@
 import os
-import string
 
 
 def load_dictionary(dictionary='default'):
@@ -32,7 +31,8 @@ def normalize_text(text):
     - Convert text to lowercase
     - Remove whitespace
     """
-    return text.lower().strip().translate(None, string.punctuation)
+    punctuation = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'
+    return text.lower().strip().translate(None, punctuation)
 
 
 def remove_prefix(word, prefixes=[]):

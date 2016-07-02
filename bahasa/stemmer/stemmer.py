@@ -16,6 +16,7 @@ class Stemmer(object):
         return " ".join([self.stem_word(word) for word in words])
 
     def stem_word(self, word):
+        print word
         if self.is_plural(word):
             return self.stem_plural_word(word)
         return self.stem_singular_word(word)
