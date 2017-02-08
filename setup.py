@@ -11,7 +11,7 @@ setup(
     url='https://github.com/kangfend/bahasa',
     keywords=['NLP', 'Bahasa', 'Indonesia', 'Stemmer'],
     classifiers=[
-        'Development Status :: 2 - Pre-Alph'a
+        'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Natural Language :: Indonesian',
