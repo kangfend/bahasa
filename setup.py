@@ -1,9 +1,11 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+from bahasa import __version__
 
 setup(
     name='bahasa',
-    packages=['bahasa'],
-    version='0.0.1',
+    packages=find_packages(),
+    package_data={'bahasa': ['data/kamus.txt']},
+    version=__version__,
     description='Bahasa is natural language toolkit for bahasa indonesia',
     license='MIT',
     author='Sutrisno Efendi',
