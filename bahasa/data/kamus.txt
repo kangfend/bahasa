@@ -25247,7 +25247,6 @@ sesoca
 sespan
 sestina
 sesuai
-sesuatu
 sesumbar
 set
 seta
