@@ -1,4 +1,5 @@
 import os
+import six
 
 
 def load_dictionary(dictionary='default'):
@@ -32,7 +33,10 @@ def normalize_text(text):
     - Remove whitespace
     """
     punctuation = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'
-    return text.lower().strip().translate(None, punctuation)
+    text = text.lower().strip()
+    if six.PY3:
+        return text.translate(str.maketrans('', '', punctuation))
+    return text.translate(None, punctuation)
 
 
 def remove_prefix(word, prefixes=[]):
