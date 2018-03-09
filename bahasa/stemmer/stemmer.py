@@ -1,7 +1,7 @@
 import re
 
 from .context import Context
-from .utils import normalize_text, load_dictionary
+from .utils import normalize_text, load_dictionary, memoize
 from .visitor.provider import VisitorProvider
 
 
@@ -15,6 +15,7 @@ class Stemmer(object):
         words = normalized_text.split()
         return " ".join([self.stem_word(word) for word in words])
 
+    @memoize
     def stem_word(self, word):
         if self.is_plural(word):
             return self.stem_plural_word(word)
@@ -36,6 +37,7 @@ class Stemmer(object):
         matches = re.match(r'^(.*)-(.*)$', plural)
         if not matches:
             return plural
+
         words = list(matches.groups())
 
         # malaikat-malaikat-nya -> malaikat malaikat-nya
@@ -43,8 +45,7 @@ class Stemmer(object):
         suffixes = ['ku', 'mu', 'nya', 'lah', 'kah', 'tah', 'pun']
         matches = re.match(r'^(.*)-(.*)$', words[0])
         if suffix in suffixes and matches:
-            words[0] = matches.group(1)
-            words[1] = matches.group(2) + '-' + suffix
+            words = [matches.group(1), matches.group(2) + '-' + suffix]
 
         # berbalas-balasan -> balas
         root_word_1 = self.stem_singular_word(words[0])
