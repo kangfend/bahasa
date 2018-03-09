@@ -67,6 +67,9 @@ def remove_suffix(word, suffixes=[]):
 
 
 def memoize(function):
+    # This code taken from 
+    # http://www.idiotinside.com/2017/06/13/caching-functions-in-python/
+    
     cache = {}
 
     @wraps(function)
@@ -74,7 +77,7 @@ def memoize(function):
         if args in cache:
             return cache[args]
         else:
-            val = function(*args)
-            cache[args] = val
-            return val
+            value = function(*args)
+            cache[args] = value
+            return value
     return wrapper
