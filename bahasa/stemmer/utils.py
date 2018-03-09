@@ -1,5 +1,6 @@
-import os
-import six
+from functools import wraps
+from os.path import dirname, join
+from six import PY3
 
 
 def load_dictionary(dictionary='default'):
@@ -11,8 +12,8 @@ def load_dictionary(dictionary='default'):
 
     word_sets = set([])
     if dictionary == 'default':
-        base_dir = os.path.dirname(os.path.dirname(__file__))
-        dictionary = os.path.join(base_dir, 'data', 'kamus.txt')
+        base_dir = dirname(dirname(__file__))
+        dictionary = join(base_dir, 'data', 'kamus.txt')
 
     with open(dictionary) as dictionary_file:
         for data in dictionary_file:
@@ -34,7 +35,7 @@ def normalize_text(text):
     """
     punctuation = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'
     text = text.lower().strip()
-    if six.PY3:
+    if PY3:
         return text.translate(str.maketrans('', '', punctuation))
     return text.translate(None, punctuation)
 
@@ -63,3 +64,17 @@ def remove_suffix(word, suffixes=[]):
             result = word[:-len(suffix)]
             break
     return result
+
+
+def memoize(function):
+    cache = {}
+
+    @wraps(function)
+    def wrapper(*args):
+        if args in cache:
+            return cache[args]
+        else:
+            val = function(*args)
+            cache[args] = val
+            return val
+    return wrapper
