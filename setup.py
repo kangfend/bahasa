@@ -7,6 +7,8 @@ setup(
     package_data={'bahasa': ['data/kamus.txt']},
     version=__version__,
     description='Bahasa is natural language toolkit for bahasa indonesia',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     license='MIT',
     author='Sutrisno Efendi',
     author_email='kangfend@gmail.com',
