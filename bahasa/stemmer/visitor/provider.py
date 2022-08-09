@@ -107,12 +107,3 @@ class VisitorProvider(object):
             PrefixDisambiguator([prefixes.Rule41()]),
             PrefixDisambiguator([prefixes.Rule42()]),
         ]
-
-    def get_visitors(self):
-        return self.visitors
-
-    def get_suffix_visitors(self):
-        return self.suffix_visitors
-
-    def get_prefix_visitors(self):
-        return self.prefix_pisitors

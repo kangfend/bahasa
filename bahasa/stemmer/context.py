@@ -10,6 +10,7 @@ class Context(object):
         self.result = self.original_word
         self.visitor_provider = visitor_provider
         self.is_stopped = False
+        self.compound = []
         self.init_visitors()
 
     def init_visitors(self):
@@ -30,6 +31,8 @@ class Context(object):
         # step 6
         if self.current_word in self.dictionary:
             self.result = self.current_word
+        elif self.compound:
+            self.result = self.compound
         else:
             self.result = self.original_word
 
@@ -40,17 +43,16 @@ class Context(object):
         Page 78-79.
         @link   http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
         """
-        return True if any([
+        return any([
             match_affix(word, 'be', 'lah'),
             match_affix(word, 'be', 'an'),
             match_affix(word, 'me', 'i'),
             match_affix(word, 'di', 'i'),
             match_affix(word, 'pe', 'i'),
-            match_affix(word, 'ter', 'i'),
-        ]) else False
+            match_affix(word, 'ter', 'i')
+        ])
 
     def start_stemming_process(self):
-
         # step 1
         if self.current_word in self.dictionary:
             return
@@ -85,15 +87,26 @@ class Context(object):
         self.remove_prefixes()
         if self.current_word in self.dictionary:
             return
-
+                
         # ECS loop pengembalian akhiran
         self.loop_pengembalian_akhiran()
 
     def remove_prefixes(self):
         for i in range(3):
             self.accept_prefix_visitors(self.prefix_visitors)
+            
             if self.current_word in self.dictionary:
                 return
+            
+            # Split compound words
+            for word in self.dictionary:
+                if all([
+                    self.current_word not in self.dictionary,
+                    self.current_word.startswith(word),
+                    self.current_word[len(word):] in self.dictionary
+                ]):
+                    self.compound = f"{word} {self.current_word[len(word):]}"
+                    return
 
     def remove_suffixes(self):
         self.accept_visitors(self.suffix_visitors)
@@ -141,7 +154,7 @@ class Context(object):
                 self.current_word = removal.result + 'kan'
             else:
                 self.current_word = removal.subject
-
+                    
             # step 4,5
             self.remove_prefixes()
             if self.current_word in self.dictionary:
