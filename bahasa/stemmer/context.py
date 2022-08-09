@@ -1,3 +1,5 @@
+import re
+
 from .utils import match_affix
 
 
@@ -99,14 +101,19 @@ class Context(object):
                 return
             
             # Split compound words
-            for word in self.dictionary:
-                if all([
-                    self.current_word not in self.dictionary,
-                    self.current_word.startswith(word),
-                    self.current_word[len(word):] in self.dictionary
-                ]):
-                    self.compound = f"{word} {self.current_word[len(word):]}"
-                    return
+            matches = re.match(r'^(ter|di|me|pe|ber)(.*)(i|kan|an|lah)$', self.original_word)
+            if matches:
+                counter = 1
+                for _ in self.current_word:
+                    word_1 = self.current_word[:counter]
+                    word_2 = self.current_word[len(word_1):]
+                    if all([
+                        word_1 in self.dictionary,
+                        word_2 in self.dictionary
+                    ]):
+                        self.compound = f"{word_1} {word_2}"
+                        return
+                    counter += 1
 
     def remove_suffixes(self):
         self.accept_visitors(self.suffix_visitors)
