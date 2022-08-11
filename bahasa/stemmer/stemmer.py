@@ -1,5 +1,7 @@
 import re
 
+from copy import copy
+
 from .context import Context
 from .utils import normalize_text, load_dictionary, memoize
 from .visitor.provider import VisitorProvider
@@ -57,6 +59,7 @@ class Stemmer(object):
 
         if root_word_1 == root_word_2:
             return root_word_1
+    
         return plural
 
     def stem_singular_word(self, word):
@@ -64,3 +67,13 @@ class Stemmer(object):
         context = Context(word, self.dictionary, self.visitor_provider)
         context.execute()
         return context.result
+
+    def add_words(self, *words):
+        """Add words to dictionary"""
+        self.dictionary.update(words)
+        self.stem_word.cache.clear()
+    
+    def remove_words(self, *words):
+        """Remove words from dictionary"""
+        self.dictionary.difference_update(words)
+        self.stem_word.cache.clear()
