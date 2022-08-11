@@ -16,8 +16,11 @@ setup(
     keywords=['NLP', 'Bahasa', 'Indonesia', 'Stemmer'],
     install_requires=['six==1.10.0'],
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
+        'Intended Audience :: Information Technology',
+        'Intended Audience :: Science/Research',
+        'Topic :: Text Processing :: Linguistic',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Natural Language :: Indonesian',
         'Programming Language :: Python',
