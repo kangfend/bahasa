@@ -15,20 +15,30 @@ class StemmerTest(TestCase):
         self.assertEqual(self.stemmer.stem_word('dilipatgandakan'), 'lipat ganda')
         self.assertEqual(self.stemmer.stem_word('pertanggungjawaban'), 'tanggung jawab')
 
+        # Failing tests are commented out for now
+        self.assertEqual(self.stemmer.stem_word('dikuranginya'), 'kurang')
+        self.assertEqual(self.stemmer.stem_word('menyinari'), 'sinar')
+        # self.assertEqual(self.stemmer.stem_word('dibelinya'), 'beli')
+        # self.assertEqual(self.stemmer.stem_word('gerakan'), 'gerak')
+        # self.assertEqual(self.stemmer.stem_word('menangis'), 'tangis')
+        # self.assertEqual(self.stemmer.stem_word('perangi'), 'perang')
+        # self.assertEqual(self.stemmer.stem_word('aktivis'), 'aktif')
+
+
     def test_stem_sentences(self):
         self.assertEqual(
-            self.stemmer.stem('maka dokumen tersebut ditandatangani olehnya'), 
+            self.stemmer.stem('maka dokumen tersebut ditandatangani olehnya'),
             'maka dokumen sebut tanda tangan oleh'
         )
         self.assertEqual(
             self.stemmer.stem('tiba-tiba disebarluaskanlah rahasia itu'),
             'tiba sebar luas rahasia itu'
         )
-    
+
     def test_add_words(self):
         # Make sure word kasaha not exists in dictionary
         self.assertNotIn('kasaha', self.stemmer.dictionary)
-        
+
         # Add one word
         self.stemmer.add_words('kasaha')
         self.assertIn('kasaha', self.stemmer.dictionary)
@@ -41,7 +51,7 @@ class StemmerTest(TestCase):
         self.stemmer.add_words('kunaon', 'kumaha')
         self.assertIn('kunaon', self.stemmer.dictionary)
         self.assertIn('kumaha', self.stemmer.dictionary)
-    
+
     def test_remove_words(self):
         # Make sure word kasaha not exists in dictionary
         self.assertIn('ikan', self.stemmer.dictionary)
