@@ -12,7 +12,7 @@ class RemoveInflectionalParticle(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removed_part = remove_suffix(context.current_word, result)
+            removed_part = context.current_word[len(result):]
             removal = Removal(self, context.current_word, result,
                               removed_part, 'P')
             context.add_removal(removal)
@@ -34,7 +34,7 @@ class RemoveDerivationalSuffix(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removed_part = remove_suffix(context.current_word, result)
+            removed_part = context.current_word[len(result):]
             removal = Removal(self, context.current_word, result,
                               removed_part, 'DS')
             context.add_removal(removal)
@@ -58,7 +58,7 @@ class RemoveInflectionalPossessivePronoun(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removed_part = remove_suffix(context.current_word, result)
+            removed_part = context.current_word[len(result):]
             removal = Removal(self, context.current_word, result,
                               removed_part, 'PP')
             context.add_removal(removal)
