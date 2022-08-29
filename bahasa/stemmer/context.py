@@ -51,7 +51,8 @@ class Context(object):
             match_affix(word, 'me', 'i'),
             match_affix(word, 'di', 'i'),
             match_affix(word, 'pe', 'i'),
-            match_affix(word, 'ter', 'i')
+            match_affix(word, 'ter', 'i'),
+            match_affix(word, suffix='is'),
         ])
 
     def start_stemming_process(self):
@@ -101,7 +102,7 @@ class Context(object):
                 return
             
             # Split compound words
-            matches = re.match(r'^(ter|di|me|pe|ber)(.*)(i|kan|an|lah)$', self.original_word)
+            matches = re.match(r'^(ter|di|me|pe|ke|ber)(.*)(i|kan|an|lah)$', self.original_word)
             if matches:
                 counter = 1
                 for _ in self.current_word:
