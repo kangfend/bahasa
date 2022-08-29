@@ -14,6 +14,14 @@ class StemmerTest(TestCase):
         self.assertEqual(self.stemmer.stem_word('penghancurleburan'), 'hancur lebur')
         self.assertEqual(self.stemmer.stem_word('dilipatgandakan'), 'lipat ganda')
         self.assertEqual(self.stemmer.stem_word('pertanggungjawaban'), 'tanggung jawab')
+        self.assertEqual(self.stemmer.stem_word('ketidakpercayaan'), 'tidak percaya')
+        self.assertEqual(self.stemmer.stem_word('dikuranginya'), 'kurang')
+        self.assertEqual(self.stemmer.stem_word('menyinari'), 'sinar')
+        self.assertEqual(self.stemmer.stem_word('dibelinya'), 'beli')
+        self.assertEqual(self.stemmer.stem_word('gerakan'), 'gerak')
+        self.assertEqual(self.stemmer.stem_word('menangis'), 'tangis')
+        self.assertEqual(self.stemmer.stem_word('perangi'), 'perang')
+        self.assertEqual(self.stemmer.stem_word('nasionalis'), 'nasional')
 
     def test_stem_sentences(self):
         self.assertEqual(

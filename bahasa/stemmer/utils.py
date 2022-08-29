@@ -16,8 +16,10 @@ def load_dictionary(dictionary='default'):
         dictionary = join(base_dir, 'data', 'kamus.txt')
 
     with open(dictionary) as dictionary_file:
-        for data in dictionary_file:
-            word_sets.add(data.strip())
+        words = dictionary_file.read().splitlines()
+        words.sort(key=len, reverse=True)
+        word_sets = set(words)
+
     return word_sets
 
 
