@@ -2634,7 +2634,6 @@ beku
 bekuk
 bekuku
 bekukung
-bel
 bela
 belabas
 belacak
@@ -8404,7 +8403,6 @@ geplak
 gepok
 geprak
 gepuk
-gera
 gerabah
 gerabak
 gerabang
@@ -11770,7 +11768,6 @@ kamsia
 kamu
 kamuflase
 kamus
-kan
 kana
 kanaah
 kanaat
@@ -18615,10 +18612,6 @@ nasib
 nasihat
 nasion
 nasional
-nasionalis
-nasionalisasi
-nasionalisme
-nasionalistis
 nasionisme
 naskah
 nasofaring
@@ -22493,7 +22486,6 @@ randi
 randu
 randuk
 randung
-rang
 rangah
 rangai
 rangak
