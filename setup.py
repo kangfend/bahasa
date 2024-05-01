@@ -14,7 +14,7 @@ setup(
     author_email='kangfend@gmail.com',
     url='https://github.com/kangfend/bahasa',
     keywords=['NLP', 'Bahasa', 'Indonesia', 'Stemmer', 'Sastrawi', 'Stemming'],
-    install_requires=['six==1.10.0'],
+    install_requires=['six==1.16.0'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
